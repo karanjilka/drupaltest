@@ -1,0 +1,10 @@
+name = Desiner
+description = "Desiner profile custom module"
+package = Module by Karan
+core = 7.x
+
+; Information added by  packaging script on 2013-11-05
+version = "7.x-1.0"
+core = "7.x"
+datestamp = "1398108442"
+

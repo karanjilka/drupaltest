@@ -1,0 +1,97 @@
+<?php
+
+/**
+ * hook permission
+ */
+function designer_permission()
+{
+    return array(
+
+    );
+}
+
+/**
+ * hook theme
+ */
+function designer_theme()
+{
+    return array(
+        'designer_maker' => array(
+            'variables' => array(),
+            'template' => 'templates/designer-maker',
+        ),
+    );
+}
+
+/**
+ * Implementation of hook_menu().
+ */
+function designer_menu()
+{
+    $items = array();
+
+    $items['designer-maker/%'] = array(
+        'title' => 'Desinger Maker',
+        'page callback' => 'designer_maker',
+        'page arguments' => array(1),
+        'access callback' => true,
+        'type' => MENU_NORMAL_ITEM,
+    );
+
+    return $items;
+}
+
+function designer_maker($contact_id)
+{
+    civicrm_initialize();
+
+    $custom_name = array("custom_1","custom_2","custom_2","custom_4","custom_5",
+        "custom_6");
+    $general = civicrm_api('contact','get',array(
+        'version' => 3,
+        'id' => $contact_id,
+    ));
+    $custom = civicrm_api('contact','get',array(
+        'return' => $custom_name,
+        'version' => 3,
+        'id' => $contact_id,
+    ));
+
+    $query = db_select('civicrm_value_portfolio_images_1','p_img')
+    ->fields('p_img',array('portfolio_images_1'))
+    ->condition('entity_id',$contact_id,'=');
+    $get_portfolio_imgs['portfolio_images'] = $query->execute()->fetchCol();
+
+    $query = db_select('civicrm_website','website')
+    ->fields('website',array('url'))
+    ->condition('contact_id',$contact_id,'=');
+    $general['values'][$contact_id]['website'] = $query->execute()->fetchField();
+
+    $final_result = array_merge($general['values'][$contact_id],
+        $custom['values'][$contact_id],$get_portfolio_imgs);
+
+    //profile image
+    $final_result['custom_5_value']=(!empty($final_result['custom_5']))?url('civicrm/file/imagefile',array('query'=>array('id'=>$final_result['custom_5'],'eid'=>$contact_id))):'';
+
+    //discipline value
+    $final_result['custom_6_value']=array();
+    foreach ($final_result['custom_6'] as $key => $value) {
+        $final_result['custom_6_value'][]=_get_discipline($value);
+    }
+
+    drupal_set_title($final_result['display_name']);
+    return theme('designer_maker',array('data'=>$final_result));
+}
+
+function _get_discipline($id="")
+{
+    $out = array(
+        '1'=>'Fashion Accessories',
+        '2'=>'Preston Lancashire',
+        '3'=>'Accepts Commissions',
+    );
+    if(!empty($id) && isset($out[$id])){
+        return $out[$id];
+    }
+    return $out;
+}

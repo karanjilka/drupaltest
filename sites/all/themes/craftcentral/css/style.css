@@ -1,3 +1,18 @@
 /**
  * Place your custom styles here.
  */
+.desiner-detail-slider{
+	max-width:560px;
+	margin-left:auto;
+	margin-right:auto;
+	margin-top:50px;
+}
+.view-id-designer_maker_directory .views-field-desiner-profile-image-5{
+	display: table-cell;
+    height: 361px;
+    vertical-align: middle;
+}
+.view-id-designer_maker_directory .views-field-desiner-profile-image-5 img{
+	max-height: 361px;
+    width: 100%;
+}
