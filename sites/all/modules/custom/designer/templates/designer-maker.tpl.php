@@ -30,6 +30,23 @@
 	        <a href="mailto:<?php print $data['email']; ?>">Connect this desiner maker</a>
         </div>
         <?php endif; ?>
+        <div class="btn-group desiner-solical-links">
+        	<?php if(!empty($data['custom_8'])): ?>
+	        <a target="_blank" href="<?php print $data['custom_8']; ?>"><span class="fa fa-facebook-official"></span></a>
+        	<?php endif; ?>
+        	<?php if(!empty($data['custom_9'])): ?>
+	        <a target="_blank" href="<?php print $data['custom_9']; ?>"><span class="fa fa-twitter-square"></span></a>
+	        <?php endif; ?>
+        	<?php if(!empty($data['custom_11'])): ?>
+	        <a target="_blank" href="<?php print $data['custom_11']; ?>"><span class="fa fa-pinterest-square"></span></a>
+	        <?php endif; ?>
+        	<?php if(!empty($data['custom_10'])): ?>
+	        <a target="_blank" href="<?php print $data['custom_10']; ?>"><span class="fa fa-linkedin-square"></span></a>
+	        <?php endif; ?>
+        	<?php if(!empty($data['custom_12'])): ?>
+	        <a target="_blank" href="<?php print $data['custom_12']; ?>"><span class="fa fa-youtube-square"></span></a>
+	        <?php endif; ?>
+        </div>
     </div>
 </div>
 <div class="row">

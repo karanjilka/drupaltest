@@ -16,3 +16,10 @@
 	max-height: 361px;
     width: 100%;
 }
+.desiner-solical-links{
+	margin-top:5px;
+}
+.desiner-solical-links a{
+	font-size:21px;
+	color:#454A5B;
+}

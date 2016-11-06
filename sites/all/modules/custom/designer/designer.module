@@ -46,7 +46,8 @@ function designer_maker($contact_id)
     civicrm_initialize();
 
     $custom_name = array("custom_1","custom_2","custom_2","custom_4","custom_5",
-        "custom_6");
+        "custom_6","custom_7","custom_8","custom_9","custom_10","custom_10","custom_11",
+        "custom_12");
     $general = civicrm_api('contact','get',array(
         'version' => 3,
         'id' => $contact_id,
@@ -56,6 +57,7 @@ function designer_maker($contact_id)
         'version' => 3,
         'id' => $contact_id,
     ));
+    //print_r($custom);exit;
 
     $query = db_select('civicrm_value_portfolio_images_1','p_img')
     ->fields('p_img',array('portfolio_images_1'))
